@@ -1,5 +1,14 @@
 Gend=-1 #global end
-
+import time
+def time_dec(func):
+    def inner(*args, **kwargs):
+        start_time = time.time()
+        res =  func(*args, **kwargs)
+        end_time = time.time()
+        result = end_time - start_time
+        print('Execution time is %.3fs' %result)
+        return res
+    return inner
 class Node:
 
     def __init__(self,isleaf):
@@ -29,6 +38,7 @@ class Suffixtree:
         self.breakend=None #store the breaked internal node end
         self.size=-1
         self.root=None
+        self.suffixlist=[]
 
     def edge_length(self,node):
         return node.end-node.start
@@ -58,7 +68,7 @@ class Suffixtree:
         if (self.edge_length(nextnode)>=self.activelength):
             return self.string[nextnode.start+self.activelength]
         if (self.edge_length(nextnode)+1==self.activelength):
-            if(nextnode.children.get[self.string[pos]] != None):
+            if(nextnode.children[self.string[pos]] is not None):
                 return self.string[pos]
         else:
             self.activenode=nextnode
@@ -119,6 +129,7 @@ class Suffixtree:
                         self.activeedge += 1
                         self.activelength -= 1
                     self.remainingcount -= 1
+    @time_dec
     def build_suffixtree(self):
 
         self.root=self.creat_node(-1,-1)
@@ -131,6 +142,7 @@ class Suffixtree:
         if (len(current.children)==0):
             start, end = current.start, current.end
             sub +=self.string[start: end + 1]
+            self.suffixlist.append(sub)
             print(sub)
         else:
             start, end = current.start, current.end
@@ -141,6 +153,7 @@ class Suffixtree:
 
     def print_dfs(self):
         self.walk_dfs(self.root,"")
+        return self.suffixlist
 
 
 
