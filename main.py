@@ -3,34 +3,37 @@ import string
 import random
 
 # initializing size of string
-N = 100000
+N = 1000000
 
 # using random.choices()
 # generating random strings
-#input = ''.join(random.choices(string.ascii_uppercase +string.digits, k=N))
-
+input = ''.join(random.choices(string.ascii_uppercase +string.digits, k=N))
+input+='$'
 # print result#
 #print("The generated random string : " + str(res))
 
-
-input="abaababaabaababaababa$"
+# input="xyzxyaxyz$"
+# input="mississi$"
+# input="abaababaabaababaababa$"
 
 # Press the green button in the gutter to run the script.
 # if __name__ == '__main__':
-suffix_set=set()
-for i in range(len(input)):
-    suffix_set.add(input[i:len(input)])
-print(suffix_set)
-print(len(suffix_set))
+# suffix_set=set()
+# for i in range(len(input)):
+#     suffix_set.add(input[i:len(input)])
+# #print(suffix_set)
+# print(len(suffix_set))
 
 
 
 suffixtree=Suffixtree(input)
 suffixtree.build_suffixtree()
-suffixlist=suffixtree.print_dfs()
-print(len(suffixlist))
-if (set(suffixlist)==suffix_set):
-    print("test ok!")
+# suffixlist=suffixtree.print_dfs()
+# print(len(suffixlist))
+# if (set(suffixlist)==suffix_set):
+#     print("test passed")
+# else:
+#     print("wrong answer")
 
 
 

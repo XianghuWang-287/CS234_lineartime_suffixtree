@@ -1,5 +1,6 @@
 Gend=-1 #global end
 import time
+
 def time_dec(func):
     def inner(*args, **kwargs):
         start_time = time.time()
@@ -9,6 +10,7 @@ def time_dec(func):
         print('Execution time is %.3fs' %result)
         return res
     return inner
+
 class Node:
 
     def __init__(self,isleaf):
@@ -105,6 +107,7 @@ class Suffixtree:
                         new_internalnode = self.creat_node(node.start, self.breakend)
                         self.activenode.children[self.string[self.activeedge]] = new_internalnode
                         new_internalnode.children[self.string[pos]] = self.creat_node(pos, Gend,isleaf=True) #it is the string[pos]
+                        #new_internalnode.children[self.string[self.activeedge]] = self.creat_node(pos, Gend,isleaf=True)
                         node.start += self.activelength
                         new_internalnode.children[self.string[node.start]] = node
                         if (lastCreatedInternalNode is not None):
@@ -143,7 +146,7 @@ class Suffixtree:
             start, end = current.start, current.end
             sub +=self.string[start: end + 1]
             self.suffixlist.append(sub)
-            print(sub)
+            #print(sub)
         else:
             start, end = current.start, current.end
             sub +=self.string[start: end + 1]
